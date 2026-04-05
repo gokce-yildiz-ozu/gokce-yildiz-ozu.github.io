@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Serap Gökçe Yıldız - Computer Science Student Personal Portfolio. My projects and contact information.">
-    <meta name="keywords" content="Serap Gökçe Yıldız, Portfolio, Computer Science, Software Development, Projects">
+    <meta name="keywords" content="Serap Gökçe Yıldız, Portfolio, Computer Science, Software Development, AI, Machine Learning, Projects">
     <meta name="author" content="Serap Gökçe Yıldız">
     <title>Serap Gokce Yildiz - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* GENEL SAYFA AYARLARI */
         html {
             scroll-behavior: smooth;
         }
-        
+
         body {
-            /* YENİ: Hafif Parallax Yıldız Arka Planı */
             background-color: #152033;
             background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
                               radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
@@ -23,222 +21,263 @@
             background-size: 550px 550px, 350px 350px, 250px 250px;
             background-position: 0 0, 40px 60px, 130px 270px;
             animation: backgroundMove 10s linear infinite;
-
-            color: #f1f5f9; 
+            color: #f1f5f9;
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 50px 20px 80px; 
-            text-align: center; 
+            padding: 50px 20px 80px;
+            text-align: center;
             line-height: 1.6;
         }
 
-        /* Arka plan hareket animasyonu */
         @keyframes backgroundMove {
-            0% { background-position: 0 0, 40px 60px, 130px 270px; }
+            0%   { background-position: 0 0, 40px 60px, 130px 270px; }
             100% { background-position: 550px 550px, 590px 610px, 680px 820px; }
         }
-        
+
         .container {
-            max-width: 900px; 
-            margin: 0 auto; 
+            max-width: 900px;
+            margin: 0 auto;
         }
-        
-        /* İsim ve Ünvan Kısımları */
+
+        /* ── HEADER ── */
         h1 {
             font-size: clamp(2em, 8vw, 3em);
             margin: 0 0 10px 0;
             color: #ffffff;
             font-weight: 700;
         }
-        
+
         .subtitle {
             font-size: clamp(1.1em, 4vw, 1.3em);
             margin: 0 0 15px 0;
-            color: #cbd5e1; 
+            color: #cbd5e1;
             font-weight: 400;
-            /* YENİ: Ortalamayı sağlamak için gerekli ayarlar */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        /* DÜZELTİLMİŞ & İNGİLİZCE: Ünvan Hover Efekti */
         .subtitle::after {
-            content: "(a.k.a. Code Wizard 🧙‍♂️)";
+            content: "(a.k.a. Code Wizard 🧙‍♀️)";
             opacity: 0;
             color: #4da6ff;
             transition: opacity 0.4s ease;
             font-size: 0.8em;
-            margin-top: 5px; /* Ana metnin hemen altında belirmesi için */
-            white-space: nowrap; /* Yazının tek satırda kalması için */
+            margin-top: 5px;
+            white-space: nowrap;
         }
-        .subtitle:hover::after {
-            opacity: 1;
-        }
-        .subtitle:hover {
-            cursor: help;
-        }
-        
-        /* MENÜ TASARIMI */
-        .nav-links {
-            margin-bottom: 80px; 
-        }
-        
+        .subtitle:hover::after { opacity: 1; }
+        .subtitle:hover { cursor: help; }
+
+        /* ── NAV ── */
+        .nav-links { margin-bottom: 80px; }
+
         .nav-links a {
             display: inline-block;
-            margin: 5px 15px; 
-            color: #4da6ff; 
-            text-decoration: none; 
+            margin: 5px 15px;
+            color: #4da6ff;
+            text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease-in-out, text-decoration 0.3s;
         }
-        
         .nav-links a:hover {
-            color: #ffffff; 
-            text-decoration: underline; 
+            color: #ffffff;
+            text-decoration: underline;
         }
-        
-        /* BÖLÜM BAŞLIKLARI VE BOŞLUKLARI */
+
+        /* ── SECTIONS ── */
         .section {
-            margin-top: clamp(60px, 15vw, 100px); 
+            margin-top: clamp(60px, 15vw, 100px);
             padding-top: 20px;
         }
-        
+
         h2 {
             font-size: clamp(1.8em, 6vw, 2.5em);
             color: #ffffff;
             margin-bottom: 40px;
             font-weight: 600;
         }
-        
-        /* PROJELER GRID VE KART AYARLARI */
+
+        /* ── ABOUT ── */
+        #about p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #cbd5e1;
+            font-size: 1.05em;
+            line-height: 1.85;
+            text-align: left;
+        }
+
+        #about p strong {
+            color: #ffffff;
+        }
+
+        /* ── SKILLS ── */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .skill-tag {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: #4da6ff;
+            padding: 6px 18px;
+            border-radius: 999px;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+        }
+
+        .skill-tag:hover {
+            background-color: #4da6ff;
+            color: #0f172a;
+            transform: translateY(-2px);
+        }
+
+        /* ── PROJECTS ── */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr)); 
-            gap: 25px; 
-            text-align: left; 
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+            gap: 25px;
+            text-align: left;
         }
-        
+
         details {
-            background-color: #1e293b; 
-            border: 1px solid #334155; 
-            border-radius: 12px; 
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
             padding: 20px;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         details:hover {
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2); 
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.2);
         }
-        
+
         summary {
-            list-style: none; 
+            list-style: none;
             outline: none;
-            display: flex; 
+            display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        
-        summary::-webkit-details-marker {
-            display: none; 
-        }
-        
+        summary::-webkit-details-marker { display: none; }
+
         .project-title-container {
             display: flex;
             flex-direction: column;
         }
-        
+
         .project-title {
             font-size: 1.5em;
             font-weight: 600;
             color: #ffffff;
             margin: 0;
         }
-        
+
         .click-text {
             font-size: 0.9em;
-            color: #94a3b8; 
+            color: #94a3b8;
             margin-top: 5px;
         }
-        
+
         .project-icon {
             font-size: 1.8em;
             margin-left: 15px;
         }
-        
-        /* Proje Detay Metni */
+
         details p {
             margin-top: 20px;
             color: #cbd5e1;
             line-height: 1.7;
-            border-top: 1px solid #334155; 
+            border-top: 1px solid #334155;
             padding-top: 15px;
+            margin-bottom: 0;
         }
-        
-        /* CONTACT KISMI */
-        #contact h2 {
-            margin-bottom: 20px; 
+
+        /* Tech tag inside project card */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
         }
-        
+
+        .tech-tag {
+            background-color: #0f172a;
+            border: 1px solid #4da6ff44;
+            color: #7dd3fc;
+            padding: 3px 12px;
+            border-radius: 999px;
+            font-size: 0.78em;
+            font-weight: 600;
+        }
+
+        /* GitHub link inside card */
+        .project-link {
+            display: inline-block;
+            margin-top: 14px;
+            color: #4da6ff;
+            font-size: 0.88em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .project-link:hover { color: #ffffff; text-decoration: underline; }
+
+        /* ── CONTACT ── */
+        #contact h2 { margin-bottom: 20px; }
+
         #contact p {
             font-size: 1.1em;
             color: #cbd5e1;
         }
-        
+
         #contact a {
             color: #4da6ff;
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s, text-decoration 0.3s;
         }
-        
         #contact a:hover {
             color: #ffffff;
             text-decoration: underline;
         }
-        
-        /* FOOTER */
+
+        /* ── FOOTER ── */
         footer {
             margin-top: 120px;
             padding: 40px 20px;
             border-top: 1px solid #334155;
-            color: #64748b; 
+            color: #64748b;
             font-size: 0.9em;
         }
-        
+
         footer a {
             color: #4da6ff;
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s;
         }
-        
         footer a:hover {
-            color: #ffffff; 
+            color: #ffffff;
             text-decoration: underline;
         }
 
-        /* RESPONSIVE AYARLAR */
+        /* ── RESPONSIVE ── */
         @media (max-width: 600px) {
-            body {
-                padding: 40px 15px;
-            }
-            .nav-links {
-                margin-bottom: 40px;
-            }
-            .nav-links a {
-                margin: 5px 10px;
-                font-size: 0.95em;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            .project-title {
-                font-size: 1.3em;
-            }
+            body { padding: 40px 15px; }
+            .nav-links { margin-bottom: 40px; }
+            .nav-links a { margin: 5px 10px; font-size: 0.95em; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .project-title { font-size: 1.3em; }
         }
     </style>
 </head>
@@ -248,20 +287,58 @@
         <p class="subtitle">Computer Science Student</p>
         <nav class="nav-links" aria-label="Main Navigation">
             <a href="#about">About</a>
+            <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
     <main class="container">
+
+        <!-- ── ABOUT ── -->
         <section id="about" class="section">
             <h2>About Me</h2>
-            <p>Hi, I am Serap Gökçe Yıldız. Here I will write a concise but effective piece about myself, my education, interests, and goals. For now, this section is under construction.</p>
+            <p>
+                I'm <strong>Serap Gökçe Yıldız</strong>, a Computer Science student with a deep curiosity for how intelligent systems think, learn, and evolve.
+                My focus lies at the intersection of <strong>Artificial Intelligence, Machine Learning, and Large Language Models</strong> —
+                areas where I believe the most meaningful software of the next decade will be built.
+                <br><br>
+                I don't just study these topics — I build with them. From semantic dialogue analysis using NLP
+                to data-driven insights on real-world economic trends, my projects reflect a genuine drive
+                to turn ideas into working, thoughtful systems.
+                <br><br>
+                Currently in my third year, I'm actively open to <strong>part-time roles and collaborative projects</strong>
+                where I can contribute, grow, and be challenged. I thrive in environments that value
+                both technical depth and creative problem-solving.
+                <br><br>
+                I believe great engineers aren't just people who write good code — they're people who ask better questions.
+                That's the kind of engineer I'm becoming.
+            </p>
         </section>
 
+        <!-- ── SKILLS ── -->
+        <section id="skills" class="section">
+            <h2>Skills & Technologies</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">Machine Learning</span>
+                <span class="skill-tag">NLP</span>
+                <span class="skill-tag">React Native</span>
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">HTML / CSS</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Data Analysis</span>
+                <span class="skill-tag">Git</span>
+            </div>
+        </section>
+
+        <!-- ── PROJECTS ── -->
         <section id="projects" class="section">
             <h2>Projects</h2>
             <div class="projects-grid">
+
                 <details>
                     <summary>
                         <div class="project-title-container">
@@ -270,7 +347,14 @@
                         </div>
                         <span class="project-icon" aria-hidden="true">🧠</span>
                     </summary>
-                    <p>In this project, I developed software that analyzes semantic structures in dialogues using artificial intelligence and natural language processing techniques. Hangi dilleri kullandın, ne işe yarıyor, GitHub linki nedir vb.</p>
+                    <p>Built an AI-powered system to analyze and visualize semantic structures in human conversations. Transformed dialogues into vector embeddings for semantic search, performed speaker-level sentiment analysis and automatic summarization. Designed an interactive web interface to display insights with dynamic visualizations.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">HTML/CSS/JS</span>
+                    </div>
+                    <!-- ÖNEMLİ: Aşağıdaki href'i kendi GitHub repo linkinle değiştir -->
+                    <!-- <a class="project-link" href="https://github.com/KULLANICI_ADIN/REPO_ADI" target="_blank" rel="noopener">→ View on GitHub</a> -->
                 </details>
 
                 <details>
@@ -281,7 +365,13 @@
                         </div>
                         <span class="project-icon" aria-hidden="true">💬</span>
                     </summary>
-                    <p>This project is a web/mobile application that allows real-time messaging. Tıklanınca sadece bu kısım aşağı doğru açılır.</p>
+                    <p>Built a full-stack cross-platform messaging application inspired by WhatsApp. Designed an intuitive mobile UI and implemented secure user authentication, friend and group management, and real-time chat functionality via RESTful APIs.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                    <!-- <a class="project-link" href="https://github.com/KULLANICI_ADIN/REPO_ADI" target="_blank" rel="noopener">→ View on GitHub</a> -->
                 </details>
 
                 <details>
@@ -292,7 +382,13 @@
                         </div>
                         <span class="project-icon" aria-hidden="true">📈</span>
                     </summary>
-                    <p>A study analyzing the relationship between gold prices and unemployment rates using data science and analytics.</p>
+                    <p>Conducted an in-depth data analysis project examining the relationship between gold prices and unemployment rates. Explored historical datasets, visualized seasonal trends, and performed correlation and regression analysis to uncover statistical patterns and economic insights.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Data Visualization</span>
+                    </div>
+                    <!-- <a class="project-link" href="https://github.com/KULLANICI_ADIN/REPO_ADI" target="_blank" rel="noopener">→ View on GitHub</a> -->
                 </details>
 
                 <details>
@@ -303,56 +399,65 @@
                         </div>
                         <span class="project-icon" aria-hidden="true">🛍️</span>
                     </summary>
-                    <p>A comprehensive admin panel for an e-commerce site offering order management, product catalog, and customer analysis.</p>
+                    <p>Designed and implemented a database-driven platform for managing e-commerce operations. Built a relational database, wrote complex queries, and developed triggers and stored procedures to automate workflows. Created a web interface for seamless data entry and visualization.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                    </div>
+                    <!-- <a class="project-link" href="https://github.com/KULLANICI_ADIN/REPO_ADI" target="_blank" rel="noopener">→ View on GitHub</a> -->
                 </details>
 
                 <details>
                     <summary>
                         <div class="project-title-container">
-                            <h3 class="project-title">Portfolyo Web Sitesi</h3>
+                            <h3 class="project-title">Portfolio Website</h3>
                             <span class="click-text">Click to see the details</span>
                         </div>
                         <span class="project-icon" aria-hidden="true">🖥️</span>
                     </summary>
-                    <p>My first personal website designed using only HTML and CSS.</p>
+                    <p>Designed and built this personal portfolio website from scratch — the one you're looking at right now. Features a parallax star background, smooth scroll navigation, animated hover effects, and a fully responsive layout across all screen sizes.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <!-- <a class="project-link" href="https://github.com/KULLANICI_ADIN/REPO_ADI" target="_blank" rel="noopener">→ View on GitHub</a> -->
                 </details>
+
             </div>
         </section>
 
+        <!-- ── CONTACT ── -->
         <section id="contact" class="section">
             <h2>Contact</h2>
-            <p>You can reach me via 
-                <a href="https://github.com/kullaniciadin" target="_blank" rel="noopener">GitHub</a>, 
-                <a href="https://linkedin.com/in/kullaniciadin" target="_blank" rel="noopener">LinkedIn</a>, 
-                or <a href="mailto:senin.mailin@gmail.com">Email</a>.
+            <p>You can reach me via
+                <!-- ÖNEMLİ: Aşağıdaki 3 linki kendi bilgilerinle değiştir -->
+                <a href="https://github.com/GITHUB_KULLANICI_ADIN" target="_blank" rel="noopener">GitHub</a>,
+                <a href="https://linkedin.com/in/LINKEDIN_KULLANICI_ADIN" target="_blank" rel="noopener">LinkedIn</a>,
+                or <a href="mailto:SENIN_MAILIN@gmail.com">Email</a>.
             </p>
         </section>
+
     </main>
 
     <footer class="container">
-        <p>Built by Serap Gokce Yildiz | <a href="https://github.com/kullaniciadin" target="_blank" rel="noopener">GitHub</a></p>
+        <!-- ÖNEMLİ: GitHub linkini kendi kullanıcı adınla değiştir -->
+        <p>Built by Serap Gokce Yildiz | <a href="https://github.com/GITHUB_KULLANICI_ADIN" target="_blank" rel="noopener">GitHub</a></p>
     </footer>
 
     <script>
-        // İNGİLİZCE: Console Message
         console.log("%cHello there! Curious about my code? 🕵️‍♀️", "color: #4da6ff; font-size: 20px; font-weight: bold;");
         console.log("If you spot a bug or just want to chat, connect with me on LinkedIn! ☕");
 
-        // İNGİLİZCE: Tab Title Game
         let originalTitle = document.title;
-        window.addEventListener("blur", () => {
-            document.title = "Hey, the code is waiting! 👩‍💻";
-        });
-        window.addEventListener("focus", () => {
-            document.title = originalTitle;
-        });
+        window.addEventListener("blur", () => { document.title = "Hey, the code is waiting! 👩‍💻"; });
+        window.addEventListener("focus", () => { document.title = originalTitle; });
 
-        // YENİ: Parallax Pixel Star Efekti
         document.addEventListener('mousemove', (e) => {
-            const background = document.body;
             const x = e.clientX / window.innerWidth;
             const y = e.clientY / window.innerHeight;
-            background.style.backgroundPosition = `
+            document.body.style.backgroundPosition = `
                 ${x * 50}px ${y * 50}px,
                 ${40 + x * 30}px ${60 + y * 30}px,
                 ${130 + x * 10}px ${270 + y * 10}px
