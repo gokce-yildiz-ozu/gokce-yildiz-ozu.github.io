@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serap Gokce Yildiz - Portfolio</title>
     <style>
-        /* Genel Sayfa Ayarları */
+        /* Genel Sayfa Ayarları (Arka plan ve ana yazı rengi aynı kaldı) */
         body {
             background-color: #1a2432; /* Yumuşak lacivert arka plan */
             color: #e2e8f0; /* Okunabilir, yumuşak açık renk yazı */
@@ -28,30 +28,30 @@
         }
         .subtitle {
             font-size: 1.3em;
-            margin: 0 0 30px 0;
+            margin: 0 0 20px 0; /* Menü ile boşluk biraz azaldı */
             color: #cbd5e1; /* Ünvan biraz daha mat */
         }
 
-        /* Tıklanabilir Üst Menü (About, Projects, Contact) */
+        /* YENİ MENÜ TASARIMI (Zeynep Deniz'in sitesindeki gibi) */
         .nav-links {
             margin-bottom: 60px; /* Alt kısımla 3-4 satır boşluk */
         }
         .nav-links a {
             display: inline-block;
-            margin: 0 10px;
-            padding: 8px 18px;
-            color: #1a2432; 
-            background-color: #e2e8f0; 
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
+            margin: 0 15px; /* Yanlardan boşluk */
+            padding: 0; /* Padding kaldırıldı, buton değil metin */
+            color: #4da6ff; /* Sade, mavi renkli link metni */
+            background-color: transparent; /* Arka plan yok */
+            text-decoration: none; /* İlk başta alt çizgi yok */
+            font-weight: normal; /* Daha ince font ağırlığı */
+            transition: color 0.3s ease-in-out;
         }
         .nav-links a:hover {
-            background-color: #ffffff;
+            color: #ffffff; /* Üzerine gelince parlak beyaz olsun */
+            text-decoration: underline; /* Üzerine gelince alt çizgi belirsiz */
         }
 
-        /* Bölüm Başlıkları ve Boşlukları (About Me, Projects vb.) */
+        /* Bölüm Başlıkları ve Boşlukları (Aynı kaldı) */
         .section {
             margin-top: 80px; /* Bölümler arası 3-4 satır boşluk */
             padding-top: 20px;
@@ -62,7 +62,7 @@
             margin-bottom: 20px;
         }
 
-        /* Projeler Açılır Kapanır Sekme Ayarları */
+        /* Projeler Açılır Kapanır Sekme Ayarları (Aynı kaldı) */
         details {
             background-color: #233043; /* Sekmeler için bir tık farklı lacivert tonu */
             padding: 15px;
@@ -100,7 +100,7 @@
 
         <div id="about" class="section">
             <h2>About Me</h2>
-            <p>Merhaba, ben Serap. Buraya kendimle ilgili detayları, eğitim hayatımı, ilgi alanlarımı ve hedeflerimi anlatan kısa ama etkili bir yazı yazacağım. Şimdilik burası hazırlık aşamasında.</p>
+            <p>Merhaba, ben Serap Gökçe Yıldız. Buraya kendimle ilgili detayları, eğitim hayatımı, ilgi alanlarımı ve hedeflerimi anlatan kısa ama etkili bir yazı yazacağım. Şimdilik burası hazırlık aşamasında.</p>
         </div>
 
         <div id="projects" class="section">
