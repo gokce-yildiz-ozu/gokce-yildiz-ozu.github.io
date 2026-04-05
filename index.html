@@ -43,6 +43,21 @@
             color: #cbd5e1; 
             font-weight: 400;
         }
+
+        /* EĞLENCELİ DOKUNUŞ 1: Ünvan Hover Efekti */
+        .subtitle::after {
+            content: " (a.k.a. Bug Hunter 🐛)";
+            opacity: 0;
+            color: #4da6ff;
+            transition: opacity 0.4s ease;
+            font-size: 0.8em;
+        }
+        .subtitle:hover::after {
+            opacity: 1;
+        }
+        .subtitle:hover {
+            cursor: help;
+        }
         
         /* MENÜ TASARIMI */
         .nav-links {
@@ -296,5 +311,20 @@
     <footer class="container">
         <p>Built by Serap Gokce Yildiz | <a href="https://github.com/kullaniciadin" target="_blank" rel="noopener">GitHub</a></p>
     </footer>
+
+    <script>
+        // Console Mesajı
+        console.log("%cMerhaba! Kodlarımı incelemeye mi geldin? 🕵️‍♀️", "color: #4da6ff; font-size: 20px; font-weight: bold;");
+        console.log("Burada bir 'bug' (hata) bulursan, bana LinkedIn'den yazmayı unutma! ☕");
+
+        // Sekme Başlığı Oyunu
+        let orjinalBaslik = document.title;
+        window.addEventListener("blur", () => {
+            document.title = "Hey, kodlar yarım kaldı! 👩‍💻";
+        });
+        window.addEventListener("focus", () => {
+            document.title = orjinalBaslik;
+        });
+    </script>
 </body>
 </html>
