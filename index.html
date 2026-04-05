@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Serap Gökçe Yıldız - Computer Science Student Personal Portfolio. My projects and contact information.">
-    <meta name="keywords" content="Serap Gökçe Yıldız, Portfolio, Computer Science, Software Development, AI, Machine Learning, Projects">
+    <meta name="description" content="Serap Gökçe Yıldız - Computer Science Student Personal Portfolio.">
+    <meta name="keywords" content="Serap Gökçe Yıldız, Portfolio, Computer Science, AI, Machine Learning">
     <meta name="author" content="Serap Gökçe Yıldız">
-    <title>Serap Gokce Yildiz - Portfolio</title>
+    <title>Serap Gökçe Yıldız - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; }
@@ -27,27 +27,47 @@
             text-align: center;
             line-height: 1.6;
         }
-
         @keyframes backgroundMove {
             0%   { background-position: 0 0, 40px 60px, 130px 270px; }
             100% { background-position: 550px 550px, 590px 610px, 680px 820px; }
         }
 
-        /* SCROLL PROGRESS BAR */
+        /* ── SCROLL PROGRESS BAR ── */
         #progress-bar {
-            position: fixed;
-            top: 0; left: 0;
-            height: 3px;
-            width: 0%;
+            position: fixed; top: 0; left: 0;
+            height: 3px; width: 0%;
             background: linear-gradient(90deg, #4da6ff, #a78bfa);
             z-index: 9999;
             border-radius: 0 2px 2px 0;
         }
 
-        /* SPARKLE */
-        .sparkle {
+        /* ── BACK TO TOP ── */
+        #back-to-top {
             position: fixed;
-            pointer-events: none;
+            bottom: 32px; right: 28px;
+            width: 44px; height: 44px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 50%;
+            color: #4da6ff;
+            font-size: 1.3em;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s, transform 0.3s, background 0.3s;
+            z-index: 9000;
+            text-decoration: none;
+        }
+        #back-to-top.visible { opacity: 1; pointer-events: all; }
+        #back-to-top:hover {
+            background: #4da6ff;
+            color: #0f172a;
+            transform: translateY(-3px);
+        }
+
+        /* ── SPARKLE ── */
+        .sparkle {
+            position: fixed; pointer-events: none;
             border-radius: 50%;
             animation: sparkleFade 0.6s ease-out forwards;
             z-index: 9998;
@@ -57,68 +77,93 @@
             100% { transform: scale(0) translateY(-14px); opacity: 0; }
         }
 
-        /* KONAMI OVERLAY */
+        /* ── KONAMI OVERLAY ── */
         #konami-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
+            display: none; position: fixed; inset: 0;
             background: rgba(10, 15, 30, 0.93);
             z-index: 99999;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            backdrop-filter: blur(8px);
-            text-align: center;
-            padding: 20px;
+            flex-direction: column; align-items: center; justify-content: center;
+            gap: 16px; backdrop-filter: blur(8px);
+            text-align: center; padding: 20px;
         }
         #konami-overlay.active { display: flex; }
         #konami-overlay h3 { font-size: 2em; color: #4da6ff; margin: 0; }
         #konami-overlay p  { color: #94a3b8; max-width: 420px; line-height: 1.75; margin: 0; }
-        #konami-overlay button {
+        #konami-overlay .btn-primary {
             margin-top: 8px;
-            background: #4da6ff;
-            color: #0f172a;
-            border: none;
-            padding: 10px 28px;
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 1em;
-            cursor: pointer;
-            font-family: inherit;
-            transition: background 0.3s;
+            background: #4da6ff; color: #0f172a;
+            border: none; padding: 10px 28px;
+            border-radius: 999px; font-weight: 700; font-size: 1em;
+            cursor: pointer; font-family: inherit; transition: background 0.3s;
         }
-        #konami-overlay button:hover { background: #ffffff; }
+        #konami-overlay .btn-primary:hover { background: #ffffff; }
 
-        /* OPEN TO WORK BADGE */
+        /* ── CONTACT POPUP ── */
+        #contact-popup {
+            display: none; position: fixed; inset: 0;
+            z-index: 88888;
+            align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        #contact-popup.active { display: flex; }
+        #contact-popup-backdrop {
+            position: absolute; inset: 0;
+            background: rgba(10, 15, 30, 0.6);
+            backdrop-filter: blur(4px);
+        }
+        #contact-popup-card {
+            position: relative; z-index: 1;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 28px 32px;
+            min-width: 280px; max-width: 340px;
+            text-align: center;
+            animation: popupIn 0.2s ease;
+        }
+        @keyframes popupIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to   { transform: scale(1);   opacity: 1; }
+        }
+        #contact-popup-icon { font-size: 2.2em; margin-bottom: 10px; }
+        #contact-popup-title { font-size: 1.1em; font-weight: 700; color: #ffffff; margin: 0 0 6px; }
+        #contact-popup-sub   { font-size: 0.85em; color: #94a3b8; margin: 0 0 22px; word-break: break-all; }
+        .popup-btns { display: flex; gap: 10px; justify-content: center; }
+        .popup-btn-open {
+            background: #4da6ff; color: #0f172a;
+            border: none; padding: 9px 24px;
+            border-radius: 999px; font-weight: 700; font-size: 0.9em;
+            cursor: pointer; font-family: inherit; transition: background 0.3s;
+            text-decoration: none; display: inline-block;
+        }
+        .popup-btn-open:hover { background: #ffffff; }
+        .popup-btn-cancel {
+            background: transparent; color: #94a3b8;
+            border: 1px solid #334155; padding: 9px 20px;
+            border-radius: 999px; font-weight: 600; font-size: 0.9em;
+            cursor: pointer; font-family: inherit; transition: color 0.3s, border-color 0.3s;
+        }
+        .popup-btn-cancel:hover { color: #ffffff; border-color: #ffffff; }
+
+        /* ── OPEN TO WORK BADGE ── */
         .open-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            background: #0f2a1a;
-            border: 1px solid #22c55e55;
-            color: #4ade80;
-            font-size: 0.78em;
-            font-weight: 600;
-            padding: 5px 16px;
-            border-radius: 999px;
-            margin-top: 12px;
+            display: inline-flex; align-items: center; gap: 7px;
+            background: #0f2a1a; border: 1px solid #22c55e55;
+            color: #4ade80; font-size: 0.78em; font-weight: 600;
+            padding: 5px 16px; border-radius: 999px; margin-top: 12px;
         }
         .open-badge .dot {
-            width: 8px; height: 8px;
-            background: #4ade80;
-            border-radius: 50%;
-            animation: pulseDot 1.8s ease-in-out infinite;
+            width: 8px; height: 8px; background: #4ade80;
+            border-radius: 50%; animation: pulseDot 1.8s ease-in-out infinite;
         }
         @keyframes pulseDot {
             0%, 100% { box-shadow: 0 0 0 0 #4ade8066; }
             50%       { box-shadow: 0 0 0 5px transparent; }
         }
 
-        /* FADE-IN ON SCROLL */
+        /* ── FADE-IN ON SCROLL ── */
         .section {
-            opacity: 0;
-            transform: translateY(28px);
+            opacity: 0; transform: translateY(28px);
             transition: opacity 0.65s ease, transform 0.65s ease;
             margin-top: clamp(60px, 15vw, 100px);
             padding-top: 20px;
@@ -127,142 +172,72 @@
 
         .container { max-width: 900px; margin: 0 auto; }
 
-        h1 {
-            font-size: clamp(2em, 8vw, 3em);
-            margin: 0 0 10px 0;
-            color: #ffffff;
-            font-weight: 700;
-        }
+        h1 { font-size: clamp(2em, 8vw, 3em); margin: 0 0 10px 0; color: #ffffff; font-weight: 700; }
 
-        /* TYPEWRITER subtitle — caret via pseudo */
         .subtitle {
-            font-size: clamp(1.1em, 4vw, 1.3em);
-            margin: 0 0 8px 0;
-            color: #cbd5e1;
-            font-weight: 400;
-            min-height: 2em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: clamp(1.1em, 4vw, 1.3em); margin: 0 0 8px 0;
+            color: #cbd5e1; font-weight: 400; min-height: 2em;
+            display: flex; align-items: center; justify-content: center;
         }
         #typewriter-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.1em;
-            background: #4da6ff;
-            margin-left: 3px;
-            vertical-align: middle;
+            display: inline-block; width: 2px; height: 1.1em;
+            background: #4da6ff; margin-left: 3px; vertical-align: middle;
             animation: blink 0.8s step-end infinite;
         }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
         .nav-links { margin: 20px 0 80px; }
         .nav-links a {
-            display: inline-block;
-            margin: 5px 15px;
-            color: #4da6ff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
+            display: inline-block; margin: 5px 15px;
+            color: #4da6ff; text-decoration: none; font-weight: 600; transition: color 0.3s;
         }
         .nav-links a:hover { color: #ffffff; text-decoration: underline; }
 
-        h2 {
-            font-size: clamp(1.8em, 6vw, 2.5em);
-            color: #ffffff;
-            margin-bottom: 40px;
-            font-weight: 600;
-        }
+        h2 { font-size: clamp(1.8em, 6vw, 2.5em); color: #ffffff; margin-bottom: 40px; font-weight: 600; }
 
         #about p {
-            max-width: 700px;
-            margin: 0 auto;
-            color: #cbd5e1;
-            font-size: 1.05em;
-            line-height: 1.85;
-            text-align: left;
+            max-width: 700px; margin: 0 auto;
+            color: #cbd5e1; font-size: 1.05em; line-height: 1.85; text-align: left;
         }
         #about p strong { color: #ffffff; }
 
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 10px;
-        }
+        .skills-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 10px; }
         .skill-tag {
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            color: #4da6ff;
-            padding: 6px 18px;
-            border-radius: 999px;
-            font-size: 0.9em;
-            font-weight: 600;
-            cursor: default;
-            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+            background-color: #1e293b; border: 1px solid #334155; color: #4da6ff;
+            padding: 6px 18px; border-radius: 999px; font-size: 0.9em; font-weight: 600;
+            cursor: default; transition: background-color 0.3s, color 0.3s, transform 0.2s;
         }
-        .skill-tag:hover {
-            background-color: #4da6ff;
-            color: #0f172a;
-            transform: translateY(-2px);
-        }
+        .skill-tag:hover { background-color: #4da6ff; color: #0f172a; transform: translateY(-2px); }
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
-            gap: 25px;
-            text-align: left;
+            gap: 25px; text-align: left;
         }
         details {
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
+            background-color: #1e293b; border: 1px solid #334155;
+            border-radius: 12px; padding: 20px; cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         details:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.2);
         }
-        summary {
-            list-style: none;
-            outline: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+        summary { list-style: none; outline: none; display: flex; align-items: center; justify-content: space-between; }
         summary::-webkit-details-marker { display: none; }
         .project-title-container { display: flex; flex-direction: column; }
         .project-title { font-size: 1.5em; font-weight: 600; color: #ffffff; margin: 0; }
         .click-text { font-size: 0.9em; color: #94a3b8; margin-top: 5px; }
         .project-icon { font-size: 1.8em; margin-left: 15px; }
-        details p {
-            margin-top: 20px; margin-bottom: 0;
-            color: #cbd5e1;
-            line-height: 1.7;
-            border-top: 1px solid #334155;
-            padding-top: 15px;
-        }
+        details p { margin-top: 20px; margin-bottom: 0; color: #cbd5e1; line-height: 1.7; border-top: 1px solid #334155; padding-top: 15px; }
         .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
         .tech-tag {
-            background-color: #0f172a;
-            border: 1px solid #4da6ff44;
-            color: #7dd3fc;
-            padding: 3px 12px;
-            border-radius: 999px;
-            font-size: 0.78em;
-            font-weight: 600;
+            background-color: #0f172a; border: 1px solid #4da6ff44; color: #7dd3fc;
+            padding: 3px 12px; border-radius: 999px; font-size: 0.78em; font-weight: 600;
         }
         .project-link {
-            display: inline-block;
-            margin-top: 14px;
-            color: #4da6ff;
-            font-size: 0.88em;
-            font-weight: 600;
-            text-decoration: none;
-            transition: color 0.3s;
+            display: inline-block; margin-top: 14px; color: #4da6ff;
+            font-size: 0.88em; font-weight: 600; text-decoration: none; transition: color 0.3s;
         }
         .project-link:hover { color: #ffffff; text-decoration: underline; }
 
@@ -271,13 +246,7 @@
         #contact a { color: #4da6ff; text-decoration: none; font-weight: 600; transition: color 0.3s; }
         #contact a:hover { color: #ffffff; text-decoration: underline; }
 
-        footer {
-            margin-top: 120px;
-            padding: 40px 20px;
-            border-top: 1px solid #334155;
-            color: #64748b;
-            font-size: 0.9em;
-        }
+        footer { margin-top: 120px; padding: 40px 20px; border-top: 1px solid #334155; color: #64748b; font-size: 0.9em; }
         footer a { color: #4da6ff; text-decoration: none; font-weight: 600; transition: color 0.3s; }
         footer a:hover { color: #ffffff; text-decoration: underline; }
 
@@ -287,6 +256,7 @@
             .nav-links a { margin: 5px 10px; font-size: 0.95em; }
             .projects-grid { grid-template-columns: 1fr; }
             .project-title { font-size: 1.3em; }
+            #contact-popup-card { padding: 22px 20px; }
         }
     </style>
 </head>
@@ -294,11 +264,29 @@
 
     <div id="progress-bar"></div>
 
+    <!-- Back to Top -->
+    <a id="back-to-top" href="#" aria-label="Back to top">&#8679;</a>
+
+    <!-- Konami Easter Egg -->
     <div id="konami-overlay">
         <h3>&#127918; Achievement Unlocked!</h3>
         <p>You found the secret! Clearly you have great taste &#8212; or a very specific set of keyboard skills.<br><br>
         Fun fact: This site was built with &#9749;, late nights, and a stubborn refusal to use a template.</p>
-        <button onclick="document.getElementById('konami-overlay').classList.remove('active')">Close &#38; pretend this never happened</button>
+        <button class="btn-primary" onclick="document.getElementById('konami-overlay').classList.remove('active')">Close &#38; pretend this never happened</button>
+    </div>
+
+    <!-- Contact Popup -->
+    <div id="contact-popup">
+        <div id="contact-popup-backdrop" onclick="closePopup()"></div>
+        <div id="contact-popup-card">
+            <div id="contact-popup-icon"></div>
+            <p id="contact-popup-title"></p>
+            <p id="contact-popup-sub"></p>
+            <div class="popup-btns">
+                <a id="popup-open-btn" class="popup-btn-open" href="#" target="_blank" rel="noopener">Open</a>
+                <button class="popup-btn-cancel" onclick="closePopup()">Cancel</button>
+            </div>
+        </div>
     </div>
 
     <header class="container">
@@ -371,7 +359,6 @@
                         <span class="tech-tag">NLP</span>
                         <span class="tech-tag">HTML / CSS / JS</span>
                     </div>
-                    <!-- Repo linkin varsa asagidaki satirin basindaki comment'i kaldir -->
                     <!-- <a class="project-link" href="https://github.com/gokce-yildiz-ozu/REPO_ADI" target="_blank" rel="noopener">&#8594; View on GitHub</a> -->
                 </details>
 
@@ -449,9 +436,9 @@
         <section id="contact" class="section">
             <h2>Contact</h2>
             <p>You can reach me via
-                <a href="https://github.com/gokce-yildiz-ozu" target="_blank" rel="noopener">GitHub</a>,
-                <a href="https://linkedin.com/in/serapgokceyildiz" target="_blank" rel="noopener">LinkedIn</a>,
-                or <a href="mailto:serapgokceyildiz@gmail.com">Email</a>.
+                <a href="#" onclick="openPopup(event,'github','&#128025; GitHub','github.com/gokce-yildiz-ozu','https://github.com/gokce-yildiz-ozu')">GitHub</a>,
+                <a href="#" onclick="openPopup(event,'linkedin','&#128101; LinkedIn','linkedin.com/in/serapgokceyildiz','https://linkedin.com/in/serapgokceyildiz')">LinkedIn</a>,
+                or <a href="#" onclick="openPopup(event,'email','&#128140; Email','serapgokceyildiz@gmail.com','mailto:serapgokceyildiz@gmail.com')">Email</a>.
             </p>
         </section>
 
@@ -480,10 +467,16 @@
                 `${x*50}px ${y*50}px, ${40+x*30}px ${60+y*30}px, ${130+x*10}px ${270+y*10}px`;
         });
 
-        // SCROLL PROGRESS
+        // SCROLL PROGRESS + BACK TO TOP
+        const btt = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {
             const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
             document.getElementById('progress-bar').style.width = (pct * 100) + '%';
+            btt.classList.toggle('visible', window.scrollY > 300);
+        });
+        btt.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // FADE-IN
@@ -493,14 +486,14 @@
         );
         document.querySelectorAll('.section').forEach(s => io.observe(s));
 
-        // SPARKLE TRAIL
-        const colors = ['#4da6ff','#a78bfa','#f472b6','#34d399','#fbbf24'];
+        // SPARKLE
+        const sparkColors = ['#4da6ff','#a78bfa','#f472b6','#34d399','#fbbf24'];
         document.addEventListener('mousemove', (e) => {
             if (Math.random() > 0.35) return;
             const sp = document.createElement('div');
             sp.className = 'sparkle';
             const sz = Math.random() * 6 + 3;
-            sp.style.cssText = `left:${e.clientX-sz/2}px;top:${e.clientY-sz/2}px;width:${sz}px;height:${sz}px;background:${colors[Math.floor(Math.random()*colors.length)]};`;
+            sp.style.cssText = `left:${e.clientX-sz/2}px;top:${e.clientY-sz/2}px;width:${sz}px;height:${sz}px;background:${sparkColors[Math.floor(Math.random()*sparkColors.length)]};`;
             document.body.appendChild(sp);
             setTimeout(() => sp.remove(), 600);
         });
@@ -538,6 +531,23 @@
                 ki = 0;
             }
         });
+
+        // CONTACT POPUP
+        function openPopup(e, type, title, sub, url) {
+            e.preventDefault();
+            document.getElementById('contact-popup-icon').textContent =
+                type === 'github' ? '\uD83D\uDC19' : type === 'linkedin' ? '\uD83D\uDCBC' : '\u2709\uFE0F';
+            document.getElementById('contact-popup-title').textContent = title;
+            document.getElementById('contact-popup-sub').textContent = sub;
+            document.getElementById('popup-open-btn').href = url;
+            if (type === 'email') document.getElementById('popup-open-btn').removeAttribute('target');
+            else document.getElementById('popup-open-btn').setAttribute('target', '_blank');
+            document.getElementById('contact-popup').classList.add('active');
+        }
+        function closePopup() {
+            document.getElementById('contact-popup').classList.remove('active');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
     </script>
 </body>
 </html>
