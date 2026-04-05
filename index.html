@@ -8,20 +8,19 @@
     <style>
         /* GENEL SAYFA AYARLARI */
         body {
-            /* YENİ: Daha lacivertimsi, koyu arka plan */
-            background-color: #0f172a; 
-            /* YENİ: Daha parlak ve modern yazı rengi */
+            /* YENİ: Çok az daha yumuşatılmış lacivert arka plan */
+            background-color: #152033; 
             color: #f1f5f9; 
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 50px 20px 80px; /* Alttan daha fazla boşluk */
-            text-align: center; /* Her şeyi ortala */
+            padding: 50px 20px 80px; 
+            text-align: center; 
             line-height: 1.6;
         }
         
         .container {
-            max-width: 900px; /* Grid yapısı için daha geniş bir alan */
-            margin: 0 auto; /* Sayfayı tam ortaya hizalar */
+            max-width: 900px; 
+            margin: 0 auto; 
         }
 
         /* İsim ve Ünvan Kısımları */
@@ -33,31 +32,31 @@
         }
         .subtitle {
             font-size: 1.3em;
-            margin: 0 0 30px 0;
-            color: #cbd5e1; /* Ünvan biraz daha mat */
+            margin: 0 0 15px 0; /* YENİ: Boşluk azaltıldı, menü yukarı taşındı */
+            color: #cbd5e1; 
             font-weight: 400;
         }
 
-        /* MENÜ TASARIMI (Mavi, sade linkler) */
+        /* MENÜ TASARIMI */
         .nav-links {
-            margin-bottom: 80px; /* Alt kısımla 3-4 satır boşluk */
+            margin-bottom: 80px; 
         }
         .nav-links a {
             display: inline-block;
-            margin: 0 15px; /* Yanlardan boşluk */
-            color: #4da6ff; /* Sade, mavi renkli link metni */
-            text-decoration: none; /* İlk başta alt çizgi yok */
+            margin: 0 15px; 
+            color: #4da6ff; 
+            text-decoration: none; 
             font-weight: 600;
             transition: color 0.3s ease-in-out, text-decoration 0.3s;
         }
         .nav-links a:hover {
-            color: #ffffff; /* Üzerine gelince parlak beyaz olsun */
-            text-decoration: underline; /* Üzerine gelince alt çizgi belirsin */
+            color: #ffffff; 
+            text-decoration: underline; 
         }
 
         /* BÖLÜM BAŞLIKLARI VE BOŞLUKLARI */
         .section {
-            margin-top: 100px; /* Bölümler arası 3-4 satır boşluk */
+            margin-top: 100px; 
             padding-top: 20px;
         }
         h2 {
@@ -67,37 +66,36 @@
             font-weight: 600;
         }
 
-        /* PROJELER GRID VE KART AYARLARI (Zeynep'in sitesi gibi) */
+        /* PROJELER GRID VE KART AYARLARI */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Esnek iki sütunlu yapı */
-            gap: 25px; /* Kartlar arası boşluk */
-            text-align: left; /* Kart içleri sola dayalı */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 25px; 
+            text-align: left; 
         }
 
         details {
-            /* YENİ: Kart tasarımı, arka plandan biraz daha açık lacivert */
             background-color: #1e293b; 
-            border: 1px solid #334155; /* Hafif kenarlık */
-            border-radius: 12px; /* Köşeleri yuvarlatılmış */
+            border: 1px solid #334155; 
+            border-radius: 12px; 
             padding: 20px;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover efekti için */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
         details:hover {
-            transform: translateY(-5px); /* Üzerine gelince hafifçe yukarı kalksın */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2); /* Gölge */
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2); 
         }
 
         summary {
-            list-style: none; /* Varsayılan ok işaretini kaldır */
+            list-style: none; 
             outline: none;
-            display: flex; /* Simge ve başlığı hizalamak için */
+            display: flex; 
             align-items: center;
             justify-content: space-between;
         }
         summary::-webkit-details-marker {
-            display: none; /* Safari için ok işaretini kaldır */
+            display: none; 
         }
 
         .project-title-container {
@@ -112,7 +110,7 @@
         }
         .click-text {
             font-size: 0.9em;
-            color: #94a3b8; /* Sönük gri renk */
+            color: #94a3b8; 
             margin-top: 5px;
         }
         .project-icon {
@@ -125,13 +123,16 @@
             margin-top: 20px;
             color: #cbd5e1;
             line-height: 1.7;
-            border-top: 1px solid #334155; /* Detay açılınca bir çizgi belirsiz */
+            border-top: 1px solid #334155; 
             padding-top: 15px;
         }
 
-        /* CONTACT KISMI (Yeni metin yapısı) */
+        /* CONTACT KISMI (Özel Ayarlar) */
+        #contact h2 {
+            margin-bottom: 20px; /* YENİ: Başlık metne biraz daha yaklaştı */
+        }
         #contact p {
-            font-size: 1.2em;
+            font-size: 1.1em; /* YENİ: Yazı çok az küçültüldü */
             color: #cbd5e1;
         }
         #contact a {
@@ -145,21 +146,22 @@
             text-decoration: underline;
         }
 
-        /* FOOTER (Sayfanın en altındaki sönük metin) */
+        /* FOOTER */
         footer {
             margin-top: 120px;
             padding-top: 20px;
             border-top: 1px solid #334155;
-            color: #64748b; /* Sönük gri renk */
+            color: #64748b; 
             font-size: 0.9em;
         }
         footer a {
-            color: #64748b;
+            color: #4da6ff; /* YENİ: GitHub yazısı mavi yapıldı */
             text-decoration: none;
+            font-weight: 600;
             transition: color 0.3s;
         }
         footer a:hover {
-            color: #cbd5e1; /* Üzerine gelince biraz daha belirgin olsun */
+            color: #ffffff; 
             text-decoration: underline;
         }
 
@@ -194,7 +196,8 @@
                             <h3 class="project-title">Semantic Dialogue Analyzer</h3>
                             <span class="click-text">Click to see the details</span>
                         </div>
-                        <span class="project-icon">🧠</span> </summary>
+                        <span class="project-icon">🧠</span>
+                    </summary>
                     <p>Bu projemde, yapay zeka ve doğal dil işleme tekniklerini kullanarak diyaloglardaki anlamsal yapıları analiz eden bir yazılım geliştirdim. Hangi dilleri kullandın, ne işe yarıyor, GitHub linki nedir vb.</p>
                 </details>
 
@@ -204,7 +207,8 @@
                             <h3 class="project-title">Howudoin Messaging App</h3>
                             <span class="click-text">Click to see the details</span>
                         </div>
-                        <span class="project-icon">💬</span> </summary>
+                        <span class="project-icon">💬</span>
+                    </summary>
                     <p>Bu proje, gerçek zamanlı mesajlaşma imkanı sunan bir web/mobil uygulamasıdır. Tıklanınca sadece bu kısım aşağı doğru açılır.</p>
                 </details>
 
@@ -214,7 +218,8 @@
                             <h3 class="project-title">Gold vs Jobs: Data Reveals</h3>
                             <span class="click-text">Click to see the details</span>
                         </div>
-                        <span class="project-icon">📈</span> </summary>
+                        <span class="project-icon">📈</span>
+                    </summary>
                     <p>Veri bilimi ve analizi kullanarak altın fiyatları ile işsizlik oranları arasındaki ilişkiyi inceleyen bir çalışma.</p>
                 </details>
 
@@ -224,7 +229,8 @@
                             <h3 class="project-title">E-Commerce Admin Platform</h3>
                             <span class="click-text">Click to see the details</span>
                         </div>
-                        <span class="project-icon">🛍️</span> </summary>
+                        <span class="project-icon">🛍️</span>
+                    </summary>
                     <p>Bir e-ticaret sitesi için sipariş yönetimi, ürün katalogu ve müşteri analizleri sunan kapsamlı bir yönetim paneli.</p>
                 </details>
 
@@ -234,7 +240,8 @@
                             <h3 class="project-title">Portfolyo Web Sitesi</h3>
                             <span class="click-text">Click to see the details</span>
                         </div>
-                        <span class="project-icon">🖥️</span> </summary>
+                        <span class="project-icon">🖥️</span>
+                    </summary>
                     <p>Sadece HTML ve CSS kullanarak tasarladığım ilk kişisel web sitem.</p>
                 </details>
 
@@ -254,7 +261,7 @@
 
     <footer>
         <div class="container">
-            <p>Built by Serap Gökçe Yıldız | <a href="https://github.com/kullaniciadin" target="_blank">GitHub</a></p>
+            <p>Built by Serap Gokce Yildiz | <a href="https://github.com/kullaniciadin" target="_blank">GitHub</a></p>
         </div>
     </footer>
 
