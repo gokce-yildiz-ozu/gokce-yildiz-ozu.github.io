@@ -9,15 +9,14 @@
     <title>Serap Gokce Yildiz - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: #152033;
-            background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
-                              radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
-                              radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 10px);
+            background-image:
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 10px);
             background-size: 550px 550px, 350px 350px, 250px 250px;
             background-position: 0 0, 40px 60px, 130px 270px;
             animation: backgroundMove 10s linear infinite;
@@ -34,12 +33,100 @@
             100% { background-position: 550px 550px, 590px 610px, 680px 820px; }
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
+        /* SCROLL PROGRESS BAR */
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, #4da6ff, #a78bfa);
+            z-index: 9999;
+            border-radius: 0 2px 2px 0;
         }
 
-        /* ── HEADER ── */
+        /* SPARKLE */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            animation: sparkleFade 0.6s ease-out forwards;
+            z-index: 9998;
+        }
+        @keyframes sparkleFade {
+            0%   { transform: scale(1) translateY(0);     opacity: 0.85; }
+            100% { transform: scale(0) translateY(-14px); opacity: 0; }
+        }
+
+        /* KONAMI OVERLAY */
+        #konami-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 15, 30, 0.93);
+            z-index: 99999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            backdrop-filter: blur(8px);
+            text-align: center;
+            padding: 20px;
+        }
+        #konami-overlay.active { display: flex; }
+        #konami-overlay h3 { font-size: 2em; color: #4da6ff; margin: 0; }
+        #konami-overlay p  { color: #94a3b8; max-width: 420px; line-height: 1.75; margin: 0; }
+        #konami-overlay button {
+            margin-top: 8px;
+            background: #4da6ff;
+            color: #0f172a;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 1em;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.3s;
+        }
+        #konami-overlay button:hover { background: #ffffff; }
+
+        /* OPEN TO WORK BADGE */
+        .open-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: #0f2a1a;
+            border: 1px solid #22c55e55;
+            color: #4ade80;
+            font-size: 0.78em;
+            font-weight: 600;
+            padding: 5px 16px;
+            border-radius: 999px;
+            margin-top: 12px;
+        }
+        .open-badge .dot {
+            width: 8px; height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulseDot 1.8s ease-in-out infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { box-shadow: 0 0 0 0 #4ade8066; }
+            50%       { box-shadow: 0 0 0 5px transparent; }
+        }
+
+        /* FADE-IN ON SCROLL */
+        .section {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+            margin-top: clamp(60px, 15vw, 100px);
+            padding-top: 20px;
+        }
+        .section.visible { opacity: 1; transform: translateY(0); }
+
+        .container { max-width: 900px; margin: 0 auto; }
+
         h1 {
             font-size: clamp(2em, 8vw, 3em);
             margin: 0 0 10px 0;
@@ -47,50 +134,38 @@
             font-weight: 700;
         }
 
+        /* TYPEWRITER subtitle — caret via pseudo */
         .subtitle {
             font-size: clamp(1.1em, 4vw, 1.3em);
-            margin: 0 0 15px 0;
+            margin: 0 0 8px 0;
             color: #cbd5e1;
             font-weight: 400;
+            min-height: 2em;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
-
-        .subtitle::after {
-            content: "(a.k.a. Code Wizard 🧙‍♀️)";
-            opacity: 0;
-            color: #4da6ff;
-            transition: opacity 0.4s ease;
-            font-size: 0.8em;
-            margin-top: 5px;
-            white-space: nowrap;
+        #typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background: #4da6ff;
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: blink 0.8s step-end infinite;
         }
-        .subtitle:hover::after { opacity: 1; }
-        .subtitle:hover { cursor: help; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-        /* ── NAV ── */
-        .nav-links { margin-bottom: 80px; }
-
+        .nav-links { margin: 20px 0 80px; }
         .nav-links a {
             display: inline-block;
             margin: 5px 15px;
             color: #4da6ff;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease-in-out, text-decoration 0.3s;
+            transition: color 0.3s;
         }
-        .nav-links a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        /* ── SECTIONS ── */
-        .section {
-            margin-top: clamp(60px, 15vw, 100px);
-            padding-top: 20px;
-        }
+        .nav-links a:hover { color: #ffffff; text-decoration: underline; }
 
         h2 {
             font-size: clamp(1.8em, 6vw, 2.5em);
@@ -99,7 +174,6 @@
             font-weight: 600;
         }
 
-        /* ── ABOUT ── */
         #about p {
             max-width: 700px;
             margin: 0 auto;
@@ -108,12 +182,8 @@
             line-height: 1.85;
             text-align: left;
         }
+        #about p strong { color: #ffffff; }
 
-        #about p strong {
-            color: #ffffff;
-        }
-
-        /* ── SKILLS ── */
         .skills-grid {
             display: flex;
             flex-wrap: wrap;
@@ -121,7 +191,6 @@
             gap: 12px;
             margin-top: 10px;
         }
-
         .skill-tag {
             background-color: #1e293b;
             border: 1px solid #334155;
@@ -130,23 +199,21 @@
             border-radius: 999px;
             font-size: 0.9em;
             font-weight: 600;
+            cursor: default;
             transition: background-color 0.3s, color 0.3s, transform 0.2s;
         }
-
         .skill-tag:hover {
             background-color: #4da6ff;
             color: #0f172a;
             transform: translateY(-2px);
         }
 
-        /* ── PROJECTS ── */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
             gap: 25px;
             text-align: left;
         }
-
         details {
             background-color: #1e293b;
             border: 1px solid #334155;
@@ -155,12 +222,10 @@
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         details:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.2);
         }
-
         summary {
             list-style: none;
             outline: none;
@@ -169,47 +234,18 @@
             justify-content: space-between;
         }
         summary::-webkit-details-marker { display: none; }
-
-        .project-title-container {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-title {
-            font-size: 1.5em;
-            font-weight: 600;
-            color: #ffffff;
-            margin: 0;
-        }
-
-        .click-text {
-            font-size: 0.9em;
-            color: #94a3b8;
-            margin-top: 5px;
-        }
-
-        .project-icon {
-            font-size: 1.8em;
-            margin-left: 15px;
-        }
-
+        .project-title-container { display: flex; flex-direction: column; }
+        .project-title { font-size: 1.5em; font-weight: 600; color: #ffffff; margin: 0; }
+        .click-text { font-size: 0.9em; color: #94a3b8; margin-top: 5px; }
+        .project-icon { font-size: 1.8em; margin-left: 15px; }
         details p {
-            margin-top: 20px;
+            margin-top: 20px; margin-bottom: 0;
             color: #cbd5e1;
             line-height: 1.7;
             border-top: 1px solid #334155;
             padding-top: 15px;
-            margin-bottom: 0;
         }
-
-        /* Tech tag inside project card */
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 14px;
-        }
-
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
         .tech-tag {
             background-color: #0f172a;
             border: 1px solid #4da6ff44;
@@ -219,8 +255,6 @@
             font-size: 0.78em;
             font-weight: 600;
         }
-
-        /* GitHub link inside card */
         .project-link {
             display: inline-block;
             margin-top: 14px;
@@ -232,26 +266,11 @@
         }
         .project-link:hover { color: #ffffff; text-decoration: underline; }
 
-        /* ── CONTACT ── */
         #contact h2 { margin-bottom: 20px; }
+        #contact p { font-size: 1.1em; color: #cbd5e1; }
+        #contact a { color: #4da6ff; text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        #contact a:hover { color: #ffffff; text-decoration: underline; }
 
-        #contact p {
-            font-size: 1.1em;
-            color: #cbd5e1;
-        }
-
-        #contact a {
-            color: #4da6ff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s, text-decoration 0.3s;
-        }
-        #contact a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        /* ── FOOTER ── */
         footer {
             margin-top: 120px;
             padding: 40px 20px;
@@ -259,19 +278,9 @@
             color: #64748b;
             font-size: 0.9em;
         }
+        footer a { color: #4da6ff; text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        footer a:hover { color: #ffffff; text-decoration: underline; }
 
-        footer a {
-            color: #4da6ff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        footer a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        /* ── RESPONSIVE ── */
         @media (max-width: 600px) {
             body { padding: 40px 15px; }
             .nav-links { margin-bottom: 40px; }
@@ -282,9 +291,20 @@
     </style>
 </head>
 <body>
+
+    <div id="progress-bar"></div>
+
+    <div id="konami-overlay">
+        <h3>&#127918; Achievement Unlocked!</h3>
+        <p>You found the secret! Clearly you have great taste &#8212; or a very specific set of keyboard skills.<br><br>
+        Fun fact: This site was built with &#9749;, late nights, and a stubborn refusal to use a template.</p>
+        <button onclick="document.getElementById('konami-overlay').classList.remove('active')">Close &#38; pretend this never happened</button>
+    </div>
+
     <header class="container">
         <h1>Serap Gokce Yildiz</h1>
-        <p class="subtitle">Computer Science Student</p>
+        <p class="subtitle"><span id="typewriter-text"></span><span id="typewriter-cursor"></span></p>
+        <div class="open-badge"><span class="dot"></span> Open to Part-Time &#38; Collaborations</div>
         <nav class="nav-links" aria-label="Main Navigation">
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
@@ -295,30 +315,29 @@
 
     <main class="container">
 
-        <!-- ── ABOUT ── -->
         <section id="about" class="section">
             <h2>About Me</h2>
             <p>
-                I'm <strong>Serap Gökçe Yıldız</strong>, a Computer Science student with a deep curiosity for how intelligent systems think, learn, and evolve.
-                My focus lies at the intersection of <strong>Artificial Intelligence, Machine Learning, and Large Language Models</strong> —
+                I'm <strong>Serap G&#246;k&#231;e Yıldız</strong>, a Computer Science student with a deep curiosity
+                for how intelligent systems think, learn, and evolve. My focus lies at the intersection of
+                <strong>Artificial Intelligence, Machine Learning, and Large Language Models</strong> &#8212;
                 areas where I believe the most meaningful software of the next decade will be built.
                 <br><br>
-                I don't just study these topics — I build with them. From semantic dialogue analysis using NLP
+                I don't just study these topics &#8212; I build with them. From semantic dialogue analysis using NLP
                 to data-driven insights on real-world economic trends, my projects reflect a genuine drive
                 to turn ideas into working, thoughtful systems.
                 <br><br>
-                Currently in my third year, I'm actively open to <strong>part-time roles and collaborative projects</strong>
-                where I can contribute, grow, and be challenged. I thrive in environments that value
-                both technical depth and creative problem-solving.
+                Currently in my third year, I'm actively open to <strong>part-time roles and collaborative
+                projects</strong> where I can contribute, grow, and be challenged. I thrive in environments
+                that value both technical depth and creative problem-solving.
                 <br><br>
-                I believe great engineers aren't just people who write good code — they're people who ask better questions.
-                That's the kind of engineer I'm becoming.
+                I believe great engineers aren't just people who write good code &#8212; they're people who ask
+                better questions. That's the kind of engineer I'm becoming.
             </p>
         </section>
 
-        <!-- ── SKILLS ── -->
         <section id="skills" class="section">
-            <h2>Skills & Technologies</h2>
+            <h2>Skills &#38; Technologies</h2>
             <div class="skills-grid">
                 <span class="skill-tag">Python</span>
                 <span class="skill-tag">Java</span>
@@ -334,7 +353,6 @@
             </div>
         </section>
 
-        <!-- ── PROJECTS ── -->
         <section id="projects" class="section">
             <h2>Projects</h2>
             <div class="projects-grid">
@@ -345,16 +363,16 @@
                             <h3 class="project-title">Semantic Dialogue Analyzer</h3>
                             <span class="click-text">Click to see the details</span>
                         </div>
-                        <span class="project-icon" aria-hidden="true">🧠</span>
+                        <span class="project-icon" aria-hidden="true">&#129504;</span>
                     </summary>
                     <p>Built an AI-powered system to analyze and visualize semantic structures in human conversations. Transformed dialogues into vector embeddings for semantic search, performed speaker-level sentiment analysis and automatic summarization. Designed an interactive web interface to display insights with dynamic visualizations.</p>
                     <div class="tech-tags">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">NLP</span>
-                        <span class="tech-tag">HTML/CSS/JS</span>
+                        <span class="tech-tag">HTML / CSS / JS</span>
                     </div>
-                    <!-- ÖNEMLİ: Aşağıdaki href'i kendi GitHub repo linkinle değiştir -->
-                    <!-- <a class="project-link" href="https://github.com/KULLANICI_ADIN/REPO_ADI" target="_blank" rel="noopener">→ View on GitHub</a> -->
+                    <!-- Repo linkin varsa asagidaki satirin basindaki comment'i kaldir -->
+                    <!-- <a class="project-link" href="https://github.com/gokce-yildiz-ozu/REPO_ADI" target="_blank" rel="noopener">&#8594; View on GitHub</a> -->
                 </details>
 
                 <details>
@@ -363,7 +381,7 @@
                             <h3 class="project-title">Howudoin Messaging App</h3>
                             <span class="click-text">Click to see the details</span>
                         </div>
-                        <span class="project-icon" aria-hidden="true">💬</span>
+                        <span class="project-icon" aria-hidden="true">&#128172;</span>
                     </summary>
                     <p>Built a full-stack cross-platform messaging application inspired by WhatsApp. Designed an intuitive mobile UI and implemented secure user authentication, friend and group management, and real-time chat functionality via RESTful APIs.</p>
                     <div class="tech-tags">
@@ -371,7 +389,7 @@
                         <span class="tech-tag">Spring Boot</span>
                         <span class="tech-tag">REST API</span>
                     </div>
-                    <!-- <a class="project-link" href="https://github.com/KULLANICI_ADIN/REPO_ADI" target="_blank" rel="noopener">→ View on GitHub</a> -->
+                    <!-- <a class="project-link" href="https://github.com/gokce-yildiz-ozu/REPO_ADI" target="_blank" rel="noopener">&#8594; View on GitHub</a> -->
                 </details>
 
                 <details>
@@ -380,7 +398,7 @@
                             <h3 class="project-title">Gold vs Jobs: Data Reveals</h3>
                             <span class="click-text">Click to see the details</span>
                         </div>
-                        <span class="project-icon" aria-hidden="true">📈</span>
+                        <span class="project-icon" aria-hidden="true">&#128200;</span>
                     </summary>
                     <p>Conducted an in-depth data analysis project examining the relationship between gold prices and unemployment rates. Explored historical datasets, visualized seasonal trends, and performed correlation and regression analysis to uncover statistical patterns and economic insights.</p>
                     <div class="tech-tags">
@@ -388,7 +406,7 @@
                         <span class="tech-tag">Pandas</span>
                         <span class="tech-tag">Data Visualization</span>
                     </div>
-                    <!-- <a class="project-link" href="https://github.com/KULLANICI_ADIN/REPO_ADI" target="_blank" rel="noopener">→ View on GitHub</a> -->
+                    <!-- <a class="project-link" href="https://github.com/gokce-yildiz-ozu/REPO_ADI" target="_blank" rel="noopener">&#8594; View on GitHub</a> -->
                 </details>
 
                 <details>
@@ -397,15 +415,15 @@
                             <h3 class="project-title">E-Commerce Admin Platform</h3>
                             <span class="click-text">Click to see the details</span>
                         </div>
-                        <span class="project-icon" aria-hidden="true">🛍️</span>
+                        <span class="project-icon" aria-hidden="true">&#128717;</span>
                     </summary>
                     <p>Designed and implemented a database-driven platform for managing e-commerce operations. Built a relational database, wrote complex queries, and developed triggers and stored procedures to automate workflows. Created a web interface for seamless data entry and visualization.</p>
                     <div class="tech-tags">
                         <span class="tech-tag">SQL</span>
                         <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">HTML / CSS</span>
                     </div>
-                    <!-- <a class="project-link" href="https://github.com/KULLANICI_ADIN/REPO_ADI" target="_blank" rel="noopener">→ View on GitHub</a> -->
+                    <!-- <a class="project-link" href="https://github.com/gokce-yildiz-ozu/REPO_ADI" target="_blank" rel="noopener">&#8594; View on GitHub</a> -->
                 </details>
 
                 <details>
@@ -414,21 +432,20 @@
                             <h3 class="project-title">Portfolio Website</h3>
                             <span class="click-text">Click to see the details</span>
                         </div>
-                        <span class="project-icon" aria-hidden="true">🖥️</span>
+                        <span class="project-icon" aria-hidden="true">&#128187;</span>
                     </summary>
-                    <p>Designed and built this personal portfolio website from scratch — the one you're looking at right now. Features a parallax star background, smooth scroll navigation, animated hover effects, and a fully responsive layout across all screen sizes.</p>
+                    <p>Designed and built this personal portfolio website from scratch &#8212; the one you're looking at right now. Features a parallax star background, smooth scroll navigation, typewriter animations, cursor sparkles, and a fully responsive layout across all screen sizes.</p>
                     <div class="tech-tags">
                         <span class="tech-tag">HTML</span>
                         <span class="tech-tag">CSS</span>
                         <span class="tech-tag">JavaScript</span>
                     </div>
-                    <!-- <a class="project-link" href="https://github.com/KULLANICI_ADIN/REPO_ADI" target="_blank" rel="noopener">→ View on GitHub</a> -->
+                    <!-- <a class="project-link" href="https://github.com/gokce-yildiz-ozu/gokce-yildiz-ozu.github.io" target="_blank" rel="noopener">&#8594; View on GitHub</a> -->
                 </details>
 
             </div>
         </section>
 
-        <!-- ── CONTACT ── -->
         <section id="contact" class="section">
             <h2>Contact</h2>
             <p>You can reach me via
@@ -445,21 +462,81 @@
     </footer>
 
     <script>
-        console.log("%cHello there! Curious about my code? 🕵️‍♀️", "color: #4da6ff; font-size: 20px; font-weight: bold;");
-        console.log("If you spot a bug or just want to chat, connect with me on LinkedIn! ☕");
+        // CONSOLE
+        console.log("%cHello there! Curious about my code? \uD83D\uDD75\uFE0F\u200D\u2640\uFE0F", "color: #4da6ff; font-size: 20px; font-weight: bold;");
+        console.log("%cIf you spot a bug or just want to chat, connect on LinkedIn! \u2615", "color: #94a3b8; font-size: 14px;");
+        console.log("%c(psst... try the Konami Code \uD83C\uDFAE)", "color: #a78bfa; font-size: 12px;");
 
-        let originalTitle = document.title;
-        window.addEventListener("blur", () => { document.title = "Hey, the code is waiting! 👩‍💻"; });
-        window.addEventListener("focus", () => { document.title = originalTitle; });
+        // TAB TITLE
+        const origTitle = document.title;
+        window.addEventListener("blur",  () => { document.title = "Hey, the code is waiting! \uD83D\uDC69\u200D\uD83D\uDCBB"; });
+        window.addEventListener("focus", () => { document.title = origTitle; });
 
+        // PARALLAX
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX / window.innerWidth;
             const y = e.clientY / window.innerHeight;
-            document.body.style.backgroundPosition = `
-                ${x * 50}px ${y * 50}px,
-                ${40 + x * 30}px ${60 + y * 30}px,
-                ${130 + x * 10}px ${270 + y * 10}px
-            `;
+            document.body.style.backgroundPosition =
+                `${x*50}px ${y*50}px, ${40+x*30}px ${60+y*30}px, ${130+x*10}px ${270+y*10}px`;
+        });
+
+        // SCROLL PROGRESS
+        window.addEventListener('scroll', () => {
+            const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            document.getElementById('progress-bar').style.width = (pct * 100) + '%';
+        });
+
+        // FADE-IN
+        const io = new IntersectionObserver(
+            entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+            { threshold: 0.1 }
+        );
+        document.querySelectorAll('.section').forEach(s => io.observe(s));
+
+        // SPARKLE TRAIL
+        const colors = ['#4da6ff','#a78bfa','#f472b6','#34d399','#fbbf24'];
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.35) return;
+            const sp = document.createElement('div');
+            sp.className = 'sparkle';
+            const sz = Math.random() * 6 + 3;
+            sp.style.cssText = `left:${e.clientX-sz/2}px;top:${e.clientY-sz/2}px;width:${sz}px;height:${sz}px;background:${colors[Math.floor(Math.random()*colors.length)]};`;
+            document.body.appendChild(sp);
+            setTimeout(() => sp.remove(), 600);
+        });
+
+        // TYPEWRITER
+        const phrases = [
+            "Computer Science Student",
+            "AI & ML Enthusiast \uD83E\uDD16",
+            "Caffeine \u2192 Code Converter \u2615",
+            "Bug Creator & Debugger \uD83D\uDC1B",
+            "LLM Tinkerer \uD83E\uDDE0",
+            "Computer Science Student"
+        ];
+        const tw = document.getElementById('typewriter-text');
+        let pi = 0, ci = 0, del = false;
+        function type() {
+            const cur = phrases[pi];
+            tw.textContent = cur.slice(0, del ? ci-- : ci++);
+            if (!del && ci > cur.length) {
+                if (pi === phrases.length - 1) return;
+                return setTimeout(() => { del = true; type(); }, 2200);
+            }
+            if (del && ci < 0) { del = false; pi = (pi + 1) % phrases.length; }
+            setTimeout(type, del ? 38 : 72);
+        }
+        setTimeout(type, 1200);
+
+        // KONAMI
+        const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+        let ki = 0;
+        document.addEventListener('keydown', e => {
+            ki = (e.key === seq[ki]) ? ki + 1 : 0;
+            if (ki === seq.length) {
+                document.getElementById('konami-overlay').classList.add('active');
+                ki = 0;
+            }
         });
     </script>
 </body>
