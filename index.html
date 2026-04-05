@@ -3,62 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolyom</title>
+    <title>Serap Gokce Yildiz - Portfolio</title>
     <style>
+        /* Genel Sayfa Ayarları */
         body {
-            /* İstediğin o yumuşak, koyu lacivert arka plan rengi */
-            background-color: #1a2432; 
-            /* Göz yormayan, kontrastlı yumuşak beyaz yazı rengi */
-            color: #e2e8f0; 
+            background-color: #1a2432; /* Yumuşak lacivert arka plan */
+            color: #e2e8f0; /* Okunabilir, yumuşak açık renk yazı */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             margin: 0;
-            text-align: center;
+            padding: 50px 20px;
+            text-align: center; /* Her şeyi ortala */
         }
+        
         .container {
-            max-width: 600px;
-            padding: 20px;
+            max-width: 700px;
+            margin: 0 auto; /* Sayfayı tam ortaya hizalar */
         }
+
+        /* İsim ve Ünvan Kısımları */
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            color: #ffffff; /* Başlık daha parlak beyaz */
+            font-size: 2.8em;
+            margin: 0 0 5px 0;
+            color: #ffffff; /* İsim parlak beyaz */
         }
-        p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #cbd5e1; /* Paragraf bir tık daha mat */
+        .subtitle {
+            font-size: 1.3em;
+            margin: 0 0 30px 0;
+            color: #cbd5e1; /* Ünvan biraz daha mat */
         }
-        .butonlar a {
+
+        /* Tıklanabilir Üst Menü (About, Projects, Contact) */
+        .nav-links {
+            margin-bottom: 60px; /* Alt kısımla 3-4 satır boşluk */
+        }
+        .nav-links a {
             display: inline-block;
             margin: 0 10px;
-            padding: 10px 20px;
-            color: #1a2432; /* Buton içi lacivert yazı */
-            background-color: #e2e8f0; /* Açık renk buton */
+            padding: 8px 18px;
+            color: #1a2432; 
+            background-color: #e2e8f0; 
             text-decoration: none;
-            border-radius: 8px; /* Köşeleri hafif yuvarlatılmış */
+            border-radius: 5px;
             font-weight: bold;
             transition: 0.3s;
         }
-        .butonlar a:hover {
-            background-color: #ffffff; /* Üzerine gelince parlasın */
+        .nav-links a:hover {
+            background-color: #ffffff;
+        }
+
+        /* Bölüm Başlıkları ve Boşlukları (About Me, Projects vb.) */
+        .section {
+            margin-top: 80px; /* Bölümler arası 3-4 satır boşluk */
+            padding-top: 20px;
+        }
+        h2 {
+            font-size: 2em;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        /* Projeler Açılır Kapanır Sekme Ayarları */
+        details {
+            background-color: #233043; /* Sekmeler için bir tık farklı lacivert tonu */
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: left; /* Proje detayı okunması kolay olsun diye sola dayalı */
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        summary {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ffffff;
+            outline: none;
+        }
+        details p {
+            margin-top: 15px;
+            color: #cbd5e1;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>Adın Soyadın</h1>
-        <p>Merhaba! Ben buraya kendi mesleğimi veya ilgi alanlarımı yazacağım. Burası benim dijital çalışma alanım. Çok yakında burada daha fazla detay olacak!</p>
         
-        <div class="butonlar">
-            <a href="https://linkedin.com/in/kullaniciadin" target="_blank">LinkedIn</a>
-            <a href="mailto:senin.email@adresin.com">Bana Ulaş</a>
+        <h1>Serap Gokce Yildiz</h1>
+        <p class="subtitle">Computer Science Student</p>
+
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
         </div>
+
+        <div id="about" class="section">
+            <h2>About Me</h2>
+            <p>Merhaba, ben Serap. Buraya kendimle ilgili detayları, eğitim hayatımı, ilgi alanlarımı ve hedeflerimi anlatan kısa ama etkili bir yazı yazacağım. Şimdilik burası hazırlık aşamasında.</p>
+        </div>
+
+        <div id="projects" class="section">
+            <h2>Projects</h2>
+            
+            <details>
+                <summary>Proje Adı 1 (Örn: Kütüphane Otomasyonu)</summary>
+                <p>Buraya proje 1'in detaylarını yazacaksın. Hangi dilleri kullandın, ne işe yarıyor, GitHub linki nedir vb.</p>
+            </details>
+
+            <details>
+                <summary>Proje Adı 2 (Örn: Veri Analizi Aracı)</summary>
+                <p>Buraya proje 2'nin detaylarını yazacaksın. Tıklanınca sadece bu kısım aşağı doğru açılır.</p>
+            </details>
+
+            <details>
+                <summary>Proje Adı 3 (Örn: Portfolyo Web Sitesi)</summary>
+                <p>Sadece HTML ve CSS kullanarak tasarladığım ilk kişisel web sitem.</p>
+            </details>
+        </div>
+
+        <div id="contact" class="section">
+            <h2>Contact</h2>
+            <p>Bana aşağıdaki adreslerden ulaşabilirsiniz:</p>
+            <p>Email: senin.mailin@gmail.com</p>
+            <p>LinkedIn: linkedin.com/in/kullaniciadin</p>
+            <p>GitHub: github.com/kullaniciadin</p>
+        </div>
+
     </div>
+
 </body>
 </html>
